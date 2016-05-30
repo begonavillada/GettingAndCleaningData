@@ -16,13 +16,13 @@ if (file.exists("./train/y_train.txt")){
 }
 
 # read train data subject ids
-if (file.exists("./UCI HAR Dataset/train/subject_train.txt")){
+if (file.exists("./train/subject_train.txt")){
         subject_train <- data.frame(read.table("./train/subject_train.txt"))
 #       str(subject_train)        
 }
 
 # read test data feature vectors
-if (file.exists("./UCI HAR Dataset/test/X_test.txt")){
+if (file.exists("./test/X_test.txt")){
         X_test <- data.frame(read.table("./test/X_test.txt"))         
 }
 
@@ -32,7 +32,7 @@ if (file.exists("./test/y_test.txt")){
         #       str(y_test)        
 }
 # read test data subject ids
-if (file.exists("./UCI HAR Dataset/test/subject_test.txt")){
+if (file.exists("./test/subject_test.txt")){
         subject_test <- data.frame(read.table("./test/subject_test.txt"))
         #       str(subject_test)        
 }
@@ -77,4 +77,4 @@ mean_std_data <- dplyr::select(noDuplicatesData, matches('(ID|mean|std|activity)
 
 # independent tidy data set with the average of each variable for each activity and each subject
 average_variable_tidy <- mean_std_data %>% group_by(activity,ID) %>% summarise_each(funs(mean))
-write.table(average_variable_tidy,file="../project_average_variable_tidy_dataset.txt")
+write.table(average_variable_tidy,file="../project_average_variable_tidy_dataset.txt",row.name=FALSE)
